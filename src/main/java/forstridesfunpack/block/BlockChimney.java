@@ -49,7 +49,7 @@ public class BlockChimney extends Block implements IFFBlock
     @Override
     public IProperty[] getPresetProperties() { return new IProperty[] {}; }
     @Override
-    public IProperty[] getNonRenderingProperties() { return null; }
+    public IProperty[] getNonRenderingProperties() { return new IProperty[] {SMOKING}; }
     @Override
     public String getStateName(IBlockState state) {return "";}
     
@@ -73,7 +73,7 @@ public class BlockChimney extends Block implements IFFBlock
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, SMOKING);
+        return new BlockStateContainer(this, new IProperty[] { SMOKING });
     }
     
     @Override
@@ -92,16 +92,16 @@ public class BlockChimney extends Block implements IFFBlock
 	@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
 	{ 
-		//if (stateIn.getValue(SMOKING))
-        //{
-			for (int i = 0; i < 8; i++)
+		if (stateIn.getValue(SMOKING) == true)
+        {
+			for (int i = 0; i < 12; i++)
 			{
 	            double d0 = (double)pos.getX() + 0.5D + ((rand.nextDouble() - rand.nextDouble()) * 0.2D);
 	            double d1 = (double)pos.getY() + 0.5D + ((rand.nextDouble() - rand.nextDouble()) * 0.2D);
 	            double d2 = (double)pos.getZ() + 0.5D + ((rand.nextDouble() - rand.nextDouble()) * 0.2D);
 	            worldIn.spawnParticle(EnumParticleTypes.SMOKE_LARGE, d0, d1, d2, 0.0D, 0.0D, 0.0D);
 			}
-        //}
+        }
 	}
     
     @Override
