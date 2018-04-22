@@ -1,13 +1,19 @@
 package forstridesfunpack.init;
 
+import static forstridesfunpack.api.FFBlocks.brick_chimney;
+
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableSet;
 
 import forstridesfunpack.api.IFFBlock;
+import forstridesfunpack.block.BlockChimney;
 import forstridesfunpack.core.ForstridesFunpack;
 import forstridesfunpack.util.BlockStateUtils;
 import forstridesfunpack.util.inventory.CreativeTabFF;
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.material.MapColor;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -19,6 +25,7 @@ public class ModBlocks
 {
     public static void init()
     {
+    	brick_chimney = registerBlock(new BlockChimney(Material.ROCK, MapColor.RED, SoundType.STONE, 0), "brick_chimney").setHardness(2.0F).setResistance(10.0F);
     }
 
     public static void registerBlockItemModel(Block block, String stateName, int stateMeta)

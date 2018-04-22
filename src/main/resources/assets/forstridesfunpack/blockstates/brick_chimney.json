@@ -1,0 +1,6 @@
+{
+    "variants": {
+		"smoking=false": { "model": "forstridesfunpack:brick_chimney" },
+		"smoking=true": { "model": "forstridesfunpack:brick_chimney" }
+    }
+}

@@ -5,6 +5,7 @@ import java.io.File;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import forstridesfunpack.init.ModBlocks;
 import forstridesfunpack.init.ModCrafting;
 import forstridesfunpack.init.ModItems;
 import net.minecraftforge.fml.common.Mod;
@@ -32,7 +33,9 @@ public class ForstridesFunpack
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
+    	ModBlocks.init();
         ModItems.init();
+        
         ModCrafting.init();
     }
 }
