@@ -64,10 +64,11 @@ public class BlockChimney extends Block implements IFFBlock
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
     {
-        IBlockState blockState = worldIn.getBlockState(pos.down());
-        Block block = blockState.getBlock();
+    	IBlockState blockState = worldIn.getBlockState(pos.down()).getBlock().getActualState(state, worldIn, pos.down());
+        Block block = worldIn.getBlockState(pos.down()).getBlock();
+        Block block2 = worldIn.getBlockState(pos.down(2)).getBlock();
         
-        return state.withProperty(SMOKING, Boolean.valueOf(block == Blocks.FIRE || block instanceof BlockChimney && blockState.getValue(SMOKING)));
+        return state.withProperty(SMOKING, Boolean.valueOf(block == Blocks.FIRE || block2 == Blocks.FIRE || block instanceof BlockChimney && blockState.getValue(SMOKING)));
     }
     
     @Override
@@ -91,8 +92,9 @@ public class BlockChimney extends Block implements IFFBlock
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
-	{ 
-		if (stateIn.getValue(SMOKING) == true)
+	{
+		IBlockState blockState = worldIn.getBlockState(pos).getBlock().getActualState(stateIn, worldIn, pos);
+		if (blockState.getValue(SMOKING))
         {
 			for (int i = 0; i < 12; i++)
 			{
