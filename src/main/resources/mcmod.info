@@ -1,0 +1,9 @@
+[{
+    "modid": "forstridesfunpack",
+    "name": "Forstride's Funpack",
+    "description": "Adds random blocks and items",
+    "version": "${mod_version}",
+    "mcversion": "${minecraft_version}",
+    "authorList": ["Forstride"],
+    "logoFile": "assets/forstridesfunpack/textures/gui/logo.png"
+}]

@@ -1,0 +1,65 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven {
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+    }
+}
+
+apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'maven'
+
+ext.configFile = file "build.properties"
+
+configFile.withReader {
+    def prop = new Properties()
+    prop.load(it)
+    project.ext.config = new ConfigSlurper().parse prop
+}
+
+group = "com.github.forstride.forstridesfunpack"
+version = config.mod_version
+archivesBaseName = "ForstridesFunpack"
+
+// add some stuff to the version
+version = "${config.minecraft_version}-${config.mod_version}.${System.getenv().BUILD_NUMBER}"
+// set this for the version.properties file, or was this broken on purpose?
+config.build_number = (System.getenv().BUILD_NUMBER) ? System.getenv().BUILD_NUMBER : ""
+
+minecraft {
+    version = config.minecraft_version + "-" + config.forge_version // grab latest forge
+    useDepAts = true
+    mappings = project.config.mappings_version
+    //gradle complains if this isn't set when setting up/using IDEA workspace
+    runDir = "run"
+    //set a full version string with appended build number to be used in mod registration
+    def buildnum = (config.build_number!="") ? '.' + config.build_number : ""
+    replace '@MOD_VERSION@', config.mod_version + buildnum
+    replace '1.0.0.0', config.forge_version
+    replaceIn 'ForstridesFunpack.java'
+}
+
+processResources {
+    from(sourceSets.main.resources.srcDirs) {
+        include '**/*.info'
+        include '**/*.properties'
+
+        // replaces
+        expand ([
+            'modid': project.archivesBaseName,
+            'mod_version': project.config.mod_version,
+            'minecraft_version': project.config.minecraft_version,
+            'build_number': project.config.build_number
+        ])
+    }
+
+    from(sourceSets.main.resources.srcDirs) {
+        exclude '**/*.info'
+        exclude '**/*.properties'
+    }
+}
