@@ -1,7 +1,9 @@
 package forstridesfunpack.init;
 
-import static forstridesfunpack.api.FFItems.ff_icon;
+import static forstridesfunpack.api.FFItems.*;
+
 import forstridesfunpack.core.ForstridesFunpack;
+import forstridesfunpack.item.ItemGrassSeeds;
 import forstridesfunpack.util.inventory.CreativeTabFF;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -27,6 +29,8 @@ public class ModItems
     	//FF Creative Tab Icon
     	ff_icon = registerItem(new Item(), "ff_icon");
         ff_icon.setCreativeTab(null);
+        
+        grass_seeds = registerItem(new ItemGrassSeeds(), "grass_seeds");
     }
     
     public static Item registerItem(Item item, String name)

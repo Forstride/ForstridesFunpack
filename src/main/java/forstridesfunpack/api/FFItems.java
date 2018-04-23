@@ -7,4 +7,6 @@ import net.minecraft.item.ItemArmor.ArmorMaterial;
 public class FFItems
 {
 	public static Item ff_icon;
+	
+	public static Item grass_seeds;
 }

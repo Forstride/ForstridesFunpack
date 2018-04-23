@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:tallgrass",
+	  "data": 1
+    }
+  ],
+  "result": {
+    "item": "forstridesfunpack:grass_seeds",
+    "count": 1
+  }
+}
