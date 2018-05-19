@@ -1,12 +1,13 @@
 package forstridesfunpack.init;
 
-import static forstridesfunpack.api.FFBlocks.brick_chimney;
+import static forstridesfunpack.api.FFBlocks.*;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableSet;
 
 import forstridesfunpack.api.IFFBlock;
 import forstridesfunpack.block.BlockChimney;
+import forstridesfunpack.block.BlockLattice;
 import forstridesfunpack.core.ForstridesFunpack;
 import forstridesfunpack.util.BlockStateUtils;
 import forstridesfunpack.util.inventory.CreativeTabFF;
@@ -26,6 +27,7 @@ public class ModBlocks
     public static void init()
     {
     	brick_chimney = registerBlock(new BlockChimney(Material.ROCK, MapColor.RED, SoundType.STONE, 0), "brick_chimney").setHardness(2.0F).setResistance(10.0F);
+    	lattice = registerBlock(new BlockLattice(Material.WOOD), "lattice");
     }
 
     public static void registerBlockItemModel(Block block, String stateName, int stateMeta)
